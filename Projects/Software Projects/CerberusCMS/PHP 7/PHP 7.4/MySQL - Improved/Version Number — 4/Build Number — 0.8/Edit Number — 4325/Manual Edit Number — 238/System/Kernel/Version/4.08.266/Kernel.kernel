@@ -2662,7 +2662,7 @@ if ($_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks_IPA_Stri
 
 	echo ("Kernel Message: Blocked Network Address Found: $_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks_IPA_String :: Is: $_GLOBAL_REMOTE_SERVER_ADDRESS :: Redirecting To: $_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks_Redirect_URL");
 
-	header("Location: $_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks_Redirect_URL"); // Banished Internet Protocol Address Found - Redirect To Internet Protocol Address and Network Banishment Notification
+	header("Refresh:10; $_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks_Redirect_URL"); // Banished Internet Protocol Address Found - Redirect To Internet Protocol Address and Network Banishment Notification
 	exit;
 
 } // [ + ] IF: Check :: Current Connected Internet Protocol Address :: To :: Blocked Interet Protocol Address String :: In The Database Management System Server Database
