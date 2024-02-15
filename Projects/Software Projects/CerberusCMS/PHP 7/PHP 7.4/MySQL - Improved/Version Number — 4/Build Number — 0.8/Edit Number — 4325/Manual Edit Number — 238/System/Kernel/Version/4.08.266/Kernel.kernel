@@ -2640,8 +2640,9 @@ if (!file_exists($_MEMBER_DIRECTORY_MASTER_LIST_ELECTRONIC_MAIL_ADDRESS_FILE)) {
  ============================================================================================================
 */
 
-$_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks				= $_KERNEL_MYSQL_IMPROVED_DATABASE_SERVER_CONNECT->query("SELECT * FROM {$_ACCESS_DATABASE_SERVER_DATABASE_TABLE_PREFIX}_networking ORDER BY id ASC");
+$_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks				= $_KERNEL_MYSQL_IMPROVED_DATABASE_SERVER_CONNECT->query("SELECT * FROM {$_ACCESS_DATABASE_SERVER_DATABASE_TABLE_PREFIX}_networking WHERE blocked_ip_address_string='$_GLOBAL_REMOTE_SERVER_ADDRESS' ORDER BY id ASC");
 $_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks_Fetch_Array			= $_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks->fetch_array(MYSQLI_BOTH);
+$_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks_Number_of_Rows		= $_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks->num_rows;
 
 /*
  ============================================================================================================
@@ -2658,7 +2659,7 @@ $_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks_Redirect_URL
  ============================================================================================================
 */
 
-if ($_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks_IPA_String == "$_GLOBAL_REMOTE_SERVER_ADDRESS") {
+if ($_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks_Number_of_Rows >= "1") {
 
 	echo ("Kernel Message: Blocked Network Address Found: $_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks_IPA_String :: Is: $_GLOBAL_REMOTE_SERVER_ADDRESS :: Redirecting To: $_DB_Query_Kernel_Networking_Status_Security_Check_Blocked_Networks_Redirect_URL");
 
